@@ -12,7 +12,11 @@
 
 <ul>
     {#for book in books}
-        <li>{book_count}. {book.title} by {book.author()}
+        <li>{book_count}. {book.title} by
+        {#for author in book.authors()}
+            {author}
+            {#if author_hasNext},{/if}
+        {/for}
         <input type="button" value="sell" class="btn btn-primary sell" isbn="{book.isbn()}"/>
         <input type="button" value="change author" class="btn btn-primary change-auth" isbn="{book.isbn()}"/>
         <input type="button" value="change title" class="btn btn-primary change-title" isbn="{book.isbn()}"/>

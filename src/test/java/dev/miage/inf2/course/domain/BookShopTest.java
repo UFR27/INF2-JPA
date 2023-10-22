@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.*;
 import java.util.function.Function;
 import java.util.stream.IntStream;
@@ -80,7 +81,7 @@ class BookShopTest {
 
 
     private static BookDTO getRandomBook() {
-        return new BookDTO(MobyNamesGenerator.getRandomName(), "the story of " + MobyNamesGenerator.getRandomName(), getRandomISBN());
+        return new BookDTO(Set.of(MobyNamesGenerator.getRandomName()), "the story of " + MobyNamesGenerator.getRandomName(), getRandomISBN());
     }
 
     private static String getRandomISBN() {

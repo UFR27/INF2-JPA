@@ -80,13 +80,17 @@ public class BookShop implements Shop<BookDTO> {
     }
 
     @Transactional
-    public void updateBookAuthorName(String isbn, String newAuthorName) {
+    public void updateBookAuthorName(String isbn, String newAuthorNames) {
         Book book = bookDAO.getBookFromISBN(isbn);
-        Author author = authorDAO.getAuthorFromName(newAuthorName);
-        if (author == null) {
-            author = authorDAO.addNewAuthor(newAuthorName);
+        book.getAuthors().clear();
+        for (String newAuthorName : newAuthorNames.split(",")) {
+
+            Author author = authorDAO.getAuthorFromName(newAuthorName);
+            if (author == null) {
+                author = authorDAO.addNewAuthor(newAuthorName);
+            }
+            book.getAuthors().add(author);
         }
-        book.setAuthor(author);
     }
 
     @Transactional

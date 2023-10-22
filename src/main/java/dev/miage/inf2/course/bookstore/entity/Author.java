@@ -3,6 +3,7 @@ package dev.miage.inf2.course.bookstore.entity;
 import jakarta.persistence.*;
 
 import java.util.Collection;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -27,15 +28,16 @@ public class Author {
         this.name = name;
     }
 
-    public Collection<Book> getBooks() {
+
+
+    private String name;
+
+    public Set<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(Collection<Book> books) {
-        this.books = books;
-    }
 
-    private String name;
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Collection<Book> books;
+
+    @ManyToMany(mappedBy = "authors")
+    private Set<Book> books;
 }

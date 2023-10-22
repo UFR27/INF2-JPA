@@ -15,9 +15,7 @@ import jakarta.ws.rs.core.Response;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Dependent
 @Path("book")
@@ -71,8 +69,11 @@ public class BooksEndpoint {
     @POST
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response newbook(@FormParam("author") String author, @FormParam("title") String title, @FormParam("isbn") String isbn) throws URISyntaxException {
-        BookDTO book = new BookDTO(author, title, isbn);
+    public Response newbook(@FormParam("author") String authorParam, @FormParam("title") String title, @FormParam("isbn") String isbn) throws URISyntaxException {
+        Set<String> authors = new HashSet<>();
+
+        authors.addAll(java.util.Arrays.asList(authorParam.split(",")));
+        BookDTO book = new BookDTO(authors, title, isbn);
         bookShop.stock(book);
         return Response.seeOther(new URI("/book/all")).build();
     }

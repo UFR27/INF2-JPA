@@ -1,0 +1,40 @@
+{
+  "id": "8438ba91-a8ef-41ca-a635-70486548a14b",
+  "tourFile": "03-MAny-to-Many.tour",
+  "title": "03-MAny-to-Many",
+  "description": "A New Tour",
+  "steps": [
+    {
+      "title": "A Description-Only Step",
+      "description": "Les livres peut avoir plusieurs auteurs, modifions donc notre programme pour tenir compte de cette modification de notre modèle"
+    },
+    {
+      "title": "BookDTO.java:13",
+      "description": "Nous modifions notre DTO pour pouvoir avoir un Set\u003cString\u003e authors",
+      "file": "BookDTO.java",
+      "line": 13
+    },
+    {
+      "title": "Author.java:41",
+      "description": "Nous utilisons maintenant l\u0027annotation  `@ManyToMany` pour dire qu\u0027un auteur peut écire plusieurs livres et que chaque livre peut être écrit par plusieurs auteurs.\nNous utilisons un Set, car la collection des livres est unique pour chaque auteur",
+      "file": "Author.java",
+      "line": 41
+    },
+    {
+      "title": "Book.java:29",
+      "description": "Même chose ici, nous passon de @ManyToOne à @ManyToMany\nNous devons également spécifier les informations pour la table de liaison",
+      "file": "Book.java",
+      "line": 29
+    },
+    {
+      "title": "BookInventoryService.java:32",
+      "description": "Enfin, les opérations de mapping sont réécrites avec des Streams pour crée autant d\u0027auteurs que nécessaire",
+      "file": "BookInventoryService.java",
+      "line": 32
+    },
+    {
+      "title": "A Description-Only Step",
+      "description": "# Exercice\n\nLes livres peuvent avoir plusieurs thèmes. Ajouter la notion de thèmes aux livres."
+    }
+  ]
+}

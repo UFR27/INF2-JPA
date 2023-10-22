@@ -30,6 +30,8 @@ public class AuthorDAO {
         }
     }
 
+    
+
     @Transactional
     public Author addNewAuthor(String authorName) {
         Author author = new Author();
