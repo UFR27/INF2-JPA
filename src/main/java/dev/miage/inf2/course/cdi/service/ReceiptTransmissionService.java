@@ -1,9 +1,9 @@
 package dev.miage.inf2.course.cdi.service;
 
-import dev.miage.inf2.course.cdi.model.Customer;
-import dev.miage.inf2.course.cdi.model.Receipt;
+import dev.miage.inf2.course.cdi.model.CustomerDTO;
+import dev.miage.inf2.course.cdi.model.ReceiptDTO;
 
 public interface ReceiptTransmissionService<T> {
 
-    void sendReceipt(Customer customer, Receipt<T> receipt);
+    void sendReceipt(CustomerDTO customer, ReceiptDTO<T> receipt);
 }

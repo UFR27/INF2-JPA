@@ -1,12 +1,11 @@
 package dev.miage.inf2.course.cdi.service.impl;
 
-import dev.miage.inf2.course.cdi.model.Customer;
-import dev.miage.inf2.course.cdi.model.Receipt;
+import dev.miage.inf2.course.cdi.model.CustomerDTO;
+import dev.miage.inf2.course.cdi.model.ReceiptDTO;
 import dev.miage.inf2.course.cdi.service.ReceiptTransmissionService;
 import jakarta.enterprise.context.Dependent;
 import jakarta.mail.*;
 import jakarta.mail.internet.*;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import java.util.Properties;
 
@@ -14,7 +13,7 @@ import java.util.Properties;
 public class ReceiptTransmissionServiceMail<T> implements ReceiptTransmissionService<T> {
 
         @Override
-    public void sendReceipt(Customer customer, Receipt<T> receipt) {
+    public void sendReceipt(CustomerDTO customer, ReceiptDTO<T> receipt) {
         try {
             Properties prop = new Properties();
             prop.put("mail.smtp.auth", true);

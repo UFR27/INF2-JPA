@@ -1,0 +1,34 @@
+{
+  "id": "74371c28-1fba-45da-b20a-7e37b444665e",
+  "tourFile": "01-NotrePremierModèle.tour",
+  "title": "01-Notre Premier Modèle",
+  "description": "A New Tour",
+  "steps": [
+    {
+      "title": "BookDTO.java:10",
+      "description": "Ce type est un record Java.\nLes record sont identiques aux classes à l\u0027exception de quelques points:\n- les attributs sont générés à la compilation, en analysant la signature de la classe\n- les attributs générés sont tous public final (ils ne peuvent donc être réassignés)\n- les getters sont générés également à la compilation.\n\nIci, les records sont utilisés comme des DTO (Data Transfert Objects).\n Ce pattern permet d\u0027aggréger des donnée facilement sérialisables dans l\u0027objectifs de les transmettre aux différentes couches de l\u0027application.\nIls ne contiennent aucune logique métier",
+      "file": "BookDTO.java",
+      "line": 10
+    },
+    {
+      "title": "Book.java:8",
+      "description": "Cette classe est une entité Jakarta Persistence (dénotée par l\u0027annotation @Entity)\nElle représente une ligne dans une base de donnée qui peut être sauvegardée/mise à jour dans une base de donnée relationnelle, telle que celle que nous allons utiliser.\nElles peuvent également contenir du code métier.\n\n Certaines entity peuvent avoir des attributs très proches de DTO, mais ils ne faut pas les confondre! leur rôles est différent des DTO.",
+      "file": "Book.java",
+      "line": 8
+    },
+    {
+      "title": "application.properties:1",
+      "description": "Cette partie du fichier de configuration application.properties permet de configurer l\u0027accès à la base de donnée. \nUtilisez les instructions données dans l\u0027EPI pour les configurer.\n\nla clé `quarkus.hibernate-orm.database.generation\u003ddrop-and-create` impose la destructions des tables de la base à chaque lancement du logiciel.\nCela permet 2 choses:\n\n* la génération automatique de schema (tables et liens entre les tables)\n* l\u0027assurance que vos entités sont bien synchronisées avec la base de données.\n\nEn revanche, toutes les données sont perdues entre 2 lancements. Vous verrez dans la suite, comment peupler automatiquement votre base de données lors du lancement de l\u0027applicaiton.",
+      "file": "application.properties",
+      "line": 1
+    },
+    {
+      "title": "A Description-Only Step",
+      "description": "Lancez l\u0027application, et rendez-vous sur \u003chttps://database.admin.miage.dev/\u003e pour visualiser la structure de votre base de donnée."
+    },
+    {
+      "title": "A Description-Only Step",
+      "description": "## Activités\n\nPensez-vous que la taille des champs soit adaptés? Pensez-vous que des restrictions supplémentaires sur le schéma seraient pertinentes?\n\n* Ajuster la taille de l\u0027ISBN à l\u0027aide de l\u0027annotation `@Column` https://jakarta.ee/specifications/persistence/3.1/apidocs/jakarta.persistence/jakarta/persistence/column\n* Ajuster l\u0027unicité de l\u0027ISBN à l\u0027aide de l\u0027annotation  `@Column`\n* Ajuster le nom de la table à l\u0027aide de l\u0027annotation `@Table` https://jakarta.ee/specifications/persistence/3.1/apidocs/jakarta.persistence/jakarta/persistence/table\n* Ajouter un index sur les noms des auteurs\n\n## Résulats \n\nRelancez l\u0027application et observez les changements dans la structure de la table"
+    }
+  ]
+}

@@ -3,8 +3,8 @@ package dev.miage.inf2.course.cdi.service.impl;
 import com.twilio.Twilio;
 import com.twilio.type.PhoneNumber;
 import com.twilio.rest.api.v2010.account.Message;
-import dev.miage.inf2.course.cdi.model.Customer;
-import dev.miage.inf2.course.cdi.model.Receipt;
+import dev.miage.inf2.course.cdi.model.CustomerDTO;
+import dev.miage.inf2.course.cdi.model.ReceiptDTO;
 import dev.miage.inf2.course.cdi.service.ReceiptTransmissionService;
 import jakarta.enterprise.context.Dependent;
 
@@ -17,7 +17,7 @@ public class ReceiptTransmissionServiceSMS<T> implements ReceiptTransmissionServ
 
 
     @Override
-    public void sendReceipt(Customer customer, Receipt<T> receipt) {
+    public void sendReceipt(CustomerDTO customer, ReceiptDTO<T> receipt) {
 
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 

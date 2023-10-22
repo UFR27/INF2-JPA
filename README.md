@@ -1,1 +1,1 @@
-Fil rouge CDI INF2
+Fil rouge INF2 Jakarta Persistence

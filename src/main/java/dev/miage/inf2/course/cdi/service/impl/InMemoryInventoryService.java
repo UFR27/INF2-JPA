@@ -1,12 +1,9 @@
 package dev.miage.inf2.course.cdi.service.impl;
 
 import dev.miage.inf2.course.cdi.exception.OutOfStockException;
-import dev.miage.inf2.course.cdi.model.Book;
+import dev.miage.inf2.course.cdi.model.BookDTO;
 import dev.miage.inf2.course.cdi.service.InventoryService;
-import jakarta.annotation.ManagedBean;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.context.Dependent;
-import jakarta.enterprise.inject.Default;
 import jakarta.inject.Named;
 
 import java.util.Collection;
@@ -16,17 +13,16 @@ import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.LinkedBlockingDeque;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
 @Named("InventoryGoodForBookStore")
-public class InMemoryInventoryService implements InventoryService<Book> {
+public class InMemoryInventoryService implements InventoryService<BookDTO> {
 
-    ConcurrentMap<String, BlockingDeque<Book>> inventory = new ConcurrentHashMap<>();
+    ConcurrentMap<String, BlockingDeque<BookDTO>> inventory = new ConcurrentHashMap<>();
 
     @Override
-    public void addToInventory(Book book) {
+    public void addToInventory(BookDTO book) {
         synchronized (book.isbn()) {
             //System.out.println("Adding a new book to inventory, we have " + this.inventory.values().stream().mapToInt(i -> i.size()).sum() + " remaining");
             if (inventory.containsKey(book.isbn())) {
@@ -38,7 +34,7 @@ public class InMemoryInventoryService implements InventoryService<Book> {
     }
 
     @Override
-    public Book takeFromInventory() {
+    public BookDTO takeFromInventory() {
         try {
             //System.out.println("Taking a book from inventory, we have " + this.inventory.values().stream().mapToInt(i -> i.size()).sum() + " remaining");
             var book = inventory.values().stream().filter(v -> v.size() > 0).findAny().orElseThrow().poll();
@@ -52,7 +48,7 @@ public class InMemoryInventoryService implements InventoryService<Book> {
     }
 
     @Override
-    public Book takeFromInventory(String id) {
+    public BookDTO takeFromInventory(String id) {
         return this.inventory.get(id).poll();
     }
 
@@ -62,7 +58,7 @@ public class InMemoryInventoryService implements InventoryService<Book> {
     }
 
     @Override
-    public Collection<Book> listAllItems() {
+    public Collection<BookDTO> listAllItems() {
         return this.inventory.values().stream().flatMap(c -> c.stream()).collect(Collectors.toSet());
     }
 

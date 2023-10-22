@@ -7,5 +7,5 @@ package dev.miage.inf2.course.cdi.model;
  * @param title  title of the book
  * @param isbn   International Standard Book Number
  */
-public record Book(String author, String title, String isbn) {
+public record BookDTO(String author, String title, String isbn) {
 }

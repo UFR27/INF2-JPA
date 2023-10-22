@@ -1,18 +1,11 @@
 package dev.miage.inf2.course.cdi.domain;
 
-import dev.miage.inf2.course.cdi.domain.BookShop;
-import dev.miage.inf2.course.cdi.domain.Shop;
 import dev.miage.inf2.course.cdi.exception.OutOfStockException;
-import dev.miage.inf2.course.cdi.model.Book;
-import dev.miage.inf2.course.cdi.model.Customer;
-import dev.miage.inf2.course.cdi.service.InventoryService;
-import dev.miage.inf2.course.cdi.service.ReceiptTransmissionService;
+import dev.miage.inf2.course.cdi.model.BookDTO;
+import dev.miage.inf2.course.cdi.model.CustomerDTO;
 import info.schnatterer.mobynamesgenerator.MobyNamesGenerator;
 import io.quarkus.test.junit.QuarkusTest;
-import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,11 +21,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class BookShopTest {
 
 
-    static Customer customer;
+    static CustomerDTO customer;
 
     @BeforeEach
     private void setup() {
-        customer = new Customer(MobyNamesGenerator.getRandomName(), MobyNamesGenerator.getRandomName(), "toto@miage.dev", "+333895457896");
+        customer = new CustomerDTO(MobyNamesGenerator.getRandomName(), MobyNamesGenerator.getRandomName(), "toto@miage.dev", "+333895457896");
     }
 
     @Inject
@@ -86,8 +79,8 @@ class BookShopTest {
     }
 
 
-    private static Book getRandomBook() {
-        return new Book(MobyNamesGenerator.getRandomName(), "the story of " + MobyNamesGenerator.getRandomName(), getRandomISBN());
+    private static BookDTO getRandomBook() {
+        return new BookDTO(MobyNamesGenerator.getRandomName(), "the story of " + MobyNamesGenerator.getRandomName(), getRandomISBN());
     }
 
     private static String getRandomISBN() {
@@ -95,14 +88,14 @@ class BookShopTest {
         return String.format("%03d-%01d-%02d-%06d-%01d", random.nextInt(1000), random.nextInt(10), random.nextInt(100), random.nextInt(1000000), random.nextInt(10));
     }
 
-    private static Stream<Runnable> getSellingRunnable(Shop<Book> bookShop, int bookCount) {
+    private static Stream<Runnable> getSellingRunnable(Shop<BookDTO> bookShop, int bookCount) {
 
         return IntStream.range(0, bookCount).mapToObj(i -> () -> bookShop.sell(customer));
 
     }
 
 
-    private static Stream<Runnable> getStokingRunnable(Shop<Book> bookShop, int bookCount, int copyPerBookCount) {
+    private static Stream<Runnable> getStokingRunnable(Shop<BookDTO> bookShop, int bookCount, int copyPerBookCount) {
         return IntStream.range(0, bookCount).mapToObj(i -> {
             var randomBook = getRandomBook();
             return IntStream.range(0, copyPerBookCount).mapToObj(ii -> (Runnable) () -> {

@@ -1,8 +1,7 @@
 package dev.miage.inf2.course.cdi.domain;
 
 import dev.miage.inf2.course.cdi.exception.OutOfStockException;
-import dev.miage.inf2.course.cdi.model.Book;
-import dev.miage.inf2.course.cdi.model.Customer;
+import dev.miage.inf2.course.cdi.model.CustomerDTO;
 
 import java.util.Collection;
 
@@ -20,7 +19,7 @@ public interface Shop<T> {
      * @return an instance of the thing to be sold
      * @throws OutOfStockException if no stock is available
      */
-    T sell(Customer customer) throws OutOfStockException;
+    T sell(CustomerDTO customer) throws OutOfStockException;
 
     /**
      * sell an item identified by id
@@ -29,7 +28,7 @@ public interface Shop<T> {
      * @param id       the id of the item
      * @return the item to be sold
      */
-    T sell(Customer customer, String id);
+    T sell(CustomerDTO customer, String id);
 
     /**
      * Add an instance of thing in the class inventory, to be sold later
