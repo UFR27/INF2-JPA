@@ -1,6 +1,6 @@
 package dev.miage.inf2.course.bookstore.domain;
 
-import dev.miage.inf2.course.bookstore.AuthorDAO;
+import dev.miage.inf2.course.bookstore.dao.AuthorDAO;
 import dev.miage.inf2.course.bookstore.annotation.MiageDB;
 import dev.miage.inf2.course.bookstore.dao.BookDAO;
 import dev.miage.inf2.course.bookstore.entity.Author;
@@ -12,7 +12,6 @@ import dev.miage.inf2.course.bookstore.model.ReceiptDTO;
 import dev.miage.inf2.course.bookstore.service.InventoryService;
 import dev.miage.inf2.course.bookstore.service.ReceiptTransmissionService;
 
-import io.smallrye.common.annotation.Blocking;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Event;
 import jakarta.inject.Inject;

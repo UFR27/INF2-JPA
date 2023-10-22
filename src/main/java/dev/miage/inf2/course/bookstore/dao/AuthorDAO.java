@@ -1,4 +1,4 @@
-package dev.miage.inf2.course.bookstore;
+package dev.miage.inf2.course.bookstore.dao;
 
 import dev.miage.inf2.course.bookstore.entity.Author;
 import jakarta.enterprise.context.ApplicationScoped;

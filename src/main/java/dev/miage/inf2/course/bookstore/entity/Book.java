@@ -31,7 +31,20 @@ public class Book {
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id")
     )
-    private Set<Author> authors=new HashSet<>();
+    private Set<Author> authors = new HashSet<>();
+
+    public Set<Theme> getThemes() {
+        return themes;
+    }
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "book_theme",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "theme_id")
+    )
+    private Set<Theme> themes = new HashSet<>();
+
     private String title;
     private String isbn;
 

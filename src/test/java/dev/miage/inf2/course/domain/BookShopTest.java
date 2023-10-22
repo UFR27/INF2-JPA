@@ -81,7 +81,7 @@ class BookShopTest {
 
 
     private static BookDTO getRandomBook() {
-        return new BookDTO(Set.of(MobyNamesGenerator.getRandomName()), "the story of " + MobyNamesGenerator.getRandomName(), getRandomISBN());
+        return new BookDTO(Set.of(MobyNamesGenerator.getRandomName()), "the story of " + MobyNamesGenerator.getRandomName(), getRandomISBN(),(Set.of("theme " + MobyNamesGenerator.getRandomName())));
     }
 
     private static String getRandomISBN() {

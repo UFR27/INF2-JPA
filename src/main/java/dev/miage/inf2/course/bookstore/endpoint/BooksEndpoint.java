@@ -69,11 +69,12 @@ public class BooksEndpoint {
     @POST
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response newbook(@FormParam("author") String authorParam, @FormParam("title") String title, @FormParam("isbn") String isbn) throws URISyntaxException {
+    public Response newbook(@FormParam("author") String authorParam, @FormParam("title") String title, @FormParam("isbn") String isbn, @FormParam("themes") String themesParam) throws URISyntaxException {
         Set<String> authors = new HashSet<>();
-
         authors.addAll(java.util.Arrays.asList(authorParam.split(",")));
-        BookDTO book = new BookDTO(authors, title, isbn);
+        Set<String> themes = new HashSet<>();
+        themes.addAll(java.util.Arrays.asList(themesParam.split(",")));
+        BookDTO book = new BookDTO(authors, title, isbn,themes);
         bookShop.stock(book);
         return Response.seeOther(new URI("/book/all")).build();
     }

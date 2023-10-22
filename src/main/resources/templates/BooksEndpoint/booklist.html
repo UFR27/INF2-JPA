@@ -17,6 +17,12 @@
             {author}
             {#if author_hasNext},{/if}
         {/for}
+        <span style="font-family: monospace">
+        {#for themes in book.themes()}
+            {themes}
+            {#if themes_hasNext},{/if}
+        {/for}
+        </span>
         <input type="button" value="sell" class="btn btn-primary sell" isbn="{book.isbn()}"/>
         <input type="button" value="change author" class="btn btn-primary change-auth" isbn="{book.isbn()}"/>
         <input type="button" value="change title" class="btn btn-primary change-title" isbn="{book.isbn()}"/>
