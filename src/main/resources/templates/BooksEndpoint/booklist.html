@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>INF2-Bookshop</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
@@ -12,7 +12,7 @@
 
 <ul>
     {#for book in books}
-        <li>{book_count}. {book.title} by {book.author()} <input type="button" value="sell" class="btn btn-primary" id="{book.isbn()}"/>
+        <li>{book_count}. {book.title} by {book.author()} <input type="button" value="sell" class="btn btn-primary sell" isbn="{book.isbn()}"/> <input type="button" value="change author" class="btn btn-primary change-auth" isbn="{book.isbn()}"/>
         </li>
 
     {/for}
@@ -26,13 +26,24 @@
 </body>
 <script>
     window.addEventListener("load", function () {
-        document.querySelectorAll("input.btn").forEach(function (e) {
+        document.querySelectorAll("input.sell").forEach(function (e) {
             e.addEventListener("click", function (ee) {
-                fetch("/book/" + e.id, { method: "DELETE" }).then((data) => {
+                fetch("/book/" + e.getAttribute("isbn"), { method: "DELETE"}).then((data) => {
                     location.reload();
                 })
             })
-        })
+        });
+
+        document.querySelectorAll("input.change-auth").forEach(function (e) {
+            e.addEventListener("click", function (ee) {
+                let newAuthor = prompt("Quel est le nouveau auteur?");
+                fetch("/book/" + e.getAttribute("isbn") + "/author", { method: "PUT", body: newAuthor}).then((data) => {
+                    location.reload();
+                })
+            })
+        });
+
+
     });
 
 

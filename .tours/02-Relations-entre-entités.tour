@@ -1,0 +1,98 @@
+{
+  "id": "caeca21c-de1a-4664-8c79-a9769900a30a",
+  "tourFile": "02-Relations-entre-entités.tour",
+  "title": "02-Relations-entre-entités",
+  "description": "A New Tour",
+  "steps": [
+    {
+      "title": "A Description-Only Step",
+      "description": "# Relations entre entité\n\nLes auteurs sont actuellement un attribut String des livres. Or on prévoit de pouvoir demander tous les livres d\u0027un auteur.\nNous allons donc créer une nouvelle entité auteur et l\u0027ajouter à l\u0027entité livre"
+    },
+    {
+      "title": "Author.java:9",
+      "description": "# Auteur\nNotre entité auteur peut est définie et sa table associée sera générée automatiquement",
+      "file": "Author.java",
+      "line": 9
+    },
+    {
+      "title": "Author.java:40",
+      "description": "# Liaison avec les livres\n\nOn remarque maintenant que les livres apparaissent comme attributs des auteurs",
+      "file": "Author.java",
+      "line": 40
+    },
+    {
+      "title": "Book.java:32",
+      "description": "Tout comme les auteurs apparaissent en attribut de livre.\n\n# @ManyToOne\n\nComme beaucoup de livres peuvent avoir le même auteur, l\u0027annotation `@ManyToOne` est utilisée. \nOn spécifie que la liaison entre les deux tables se fera sur la colonne de jointure specifiée",
+      "file": "Book.java",
+      "line": 32
+    },
+    {
+      "title": "Author.java:39",
+      "description": "# Auteur -\u003e Livre\n\nL\u0027entité auteur est également liée à l\u0027entité Livre. Comme un auteur peut écrire plusieurs livre, on utilise l\u0027annotation `@OneToMany`\n\nOn spécifie également plusieurs propriétés:\n\n* la colonne de mapping\n* le fait que les modifications se font en cascade (si on change un livre dans auteur, l\u0027auteur est également changé dans livre)\n* le type de Fetch est placé à Lazy: cela signifie que la liste de livre sera chargée au dernier moment, lorsque celle-ci sera utilisée et non pas systématiquement.",
+      "file": "Author.java",
+      "line": 39
+    },
+    {
+      "title": "A Description-Only Step",
+      "description": "# Ajout de livre\n\nLancez l\u0027application et rendez-vous sur [http://localhost:8080/book/all](http://localhost:8080/book/all).\n\nAjoutez un livre. \n\nNous allons voir maintenant comment l\u0027ajout de livre fonctionne."
+    },
+    {
+      "title": "BooksEndpoint.java:75",
+      "description": "Ici, les informations sur le livre sont passés par formulaire. Les données du formulaire sont placées dans un DTO.\nLe DTO va maintenant être utilisé par le service pour sauvegarder le nouveau livre en base.",
+      "file": "BooksEndpoint.java",
+      "line": 75
+    },
+    {
+      "title": "BookInventoryService.java:19",
+      "description": "# BookInventoryService\n\nCette classe réalise les opérations métiers de l\u0027inventaire des livres.",
+      "file": "BookInventoryService.java",
+      "line": 19
+    },
+    {
+      "title": "BookInventoryService.java:22",
+      "description": "# EntityManager\n\nC\u0027est la classe principale de *Jakarta Persistence*.\n\nElle permet de créaliser les opérations CRUD sur les entités. Elle est injectée et configurée automatiquement par Quarkus à l\u0027aide du fichier de properties que vous avez modifié.",
+      "file": "BookInventoryService.java",
+      "line": 22
+    },
+    {
+      "title": "BookInventoryService.java:67",
+      "description": "# EntityManager\n\nIci, nous avons un exemple d\u0027utilisation de l\u0027entity Manager qui utiliser un type de requète spécifique à Jakarta Persistence API: JPQL.\n\nJPQL ressemble à SQL, mais permet une validation de la sémantique des requètes plus précise.",
+      "file": "BookInventoryService.java",
+      "line": 67
+    },
+    {
+      "title": "BookInventoryService.java:60",
+      "description": "# EntityManager\n\nIci, cette requète compte le nombre de livres",
+      "file": "BookInventoryService.java",
+      "line": 60
+    },
+    {
+      "title": "BookInventoryService.java:29",
+      "description": "# Méthode @Transactional\n\nDès lors qu\u0027on modifie la base de donnée, une requète doit être utilisée, afin de rendre l\u0027opération atomique.\nLes méthodes des classes effectuant une telle opération doivent être annotées avec `@Transactional`\n\n* Ici, nous utilisons une classe DAO (Data Access Object) qui permer de manipuler les auteurs de livres (get/add)\n* ensuite, nous utilisons la méthode persist de l\u0027`EntityManager` pour sauvegarder les entités.",
+      "file": "BookInventoryService.java",
+      "line": 29
+    },
+    {
+      "title": "BookInventoryService.java:46",
+      "description": "L\u0027entity MAnager nous permet d\u0027écrire des requètes natives, directement dans le Dialecte SQL  de notre fournisseur de persistence.\n\nSans vérification syntaxique, elles permettent néanmoins d\u0027utiliser directement vos connaissances de SQL lorsque JPQL est trop limité.",
+      "file": "BookInventoryService.java",
+      "line": 46
+    },
+    {
+      "title": "BookShop.java:84",
+      "description": "Ici, nous changeons le nom de l\u0027auteur.\nNotez que la méthode est transactionnelle, puisque nous modifions la DB.\nNotez également qu\u0027il n\u0027est pas nécessaire de faire appel à l\u0027entity manager pour sauvegarder les modifications apportées à l\u0027entité Book: elles sont automatiquement sauveradée lors du commit de la transaction.\n\nIl est possible de détacher une entité à l\u0027aide de l\u0027entity Manager pour ne pas avoir ce comportement.",
+      "file": "BookShop.java",
+      "line": 84
+    },
+    {
+      "title": "import.sql:1",
+      "description": "AFin de permettre à notre base de donnée de contenir des lignes lors du déploiement de notre application, le fichier `import.sql` qui se trouve dans src/main/resources permet d\u0027exécuter le code SQL specifié lors de chaque nouveaux lancement de l\u0027application en mode debug.",
+      "file": "import.sql",
+      "line": 1
+    },
+    {
+      "title": "A Description-Only Step",
+      "description": "Ajouter du code pour changer le titre d\u0027un livre"
+    }
+  ]
+}

@@ -1,8 +1,8 @@
-package dev.miage.inf2.course.cdi.domain;
+package dev.miage.inf2.course.bookstore.domain;
 
-import dev.miage.inf2.course.cdi.exception.OutOfStockException;
-import dev.miage.inf2.course.cdi.model.BookDTO;
-import dev.miage.inf2.course.cdi.model.CustomerDTO;
+import dev.miage.inf2.course.bookstore.exception.OutOfStockException;
+import dev.miage.inf2.course.bookstore.model.BookDTO;
+import dev.miage.inf2.course.bookstore.model.CustomerDTO;
 import info.schnatterer.mobynamesgenerator.MobyNamesGenerator;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
