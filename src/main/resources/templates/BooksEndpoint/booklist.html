@@ -12,7 +12,10 @@
 
 <ul>
     {#for book in books}
-        <li>{book_count}. {book.title} by {book.author()} <input type="button" value="sell" class="btn btn-primary sell" isbn="{book.isbn()}"/> <input type="button" value="change author" class="btn btn-primary change-auth" isbn="{book.isbn()}"/>
+        <li>{book_count}. {book.title} by {book.author()}
+        <input type="button" value="sell" class="btn btn-primary sell" isbn="{book.isbn()}"/>
+        <input type="button" value="change author" class="btn btn-primary change-auth" isbn="{book.isbn()}"/>
+        <input type="button" value="change title" class="btn btn-primary change-title" isbn="{book.isbn()}"/>
         </li>
 
     {/for}
@@ -38,6 +41,15 @@
             e.addEventListener("click", function (ee) {
                 let newAuthor = prompt("Quel est le nouveau auteur?");
                 fetch("/book/" + e.getAttribute("isbn") + "/author", { method: "PUT", body: newAuthor}).then((data) => {
+                    location.reload();
+                })
+            })
+        });
+
+        document.querySelectorAll("input.change-title").forEach(function (e) {
+            e.addEventListener("click", function (ee) {
+                let newTitle = prompt("Quel est le nouveau titre?");
+                fetch("/book/" + e.getAttribute("isbn") + "/title", { method: "PUT", body: newTitle}).then((data) => {
                     location.reload();
                 })
             })

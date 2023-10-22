@@ -85,4 +85,13 @@ public class BooksEndpoint {
         return Response.accepted().build();
 
     };
+
+    @Path("{isbn}/title")
+    @PUT
+    @Consumes(MediaType.TEXT_PLAIN)
+    public Response changeTitleForBook(@PathParam("isbn") String isbn,String newTitle){
+        bookShop.updateBookTitle(isbn,newTitle);
+        return Response.accepted().build();
+
+    };
 }
