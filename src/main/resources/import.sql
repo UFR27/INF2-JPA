@@ -1,52 +1,79 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: mysql:3306
+-- Generation Time: Oct 23, 2023 at 01:03 AM
+-- Server version: 8.1.0
+-- PHP Version: 8.2.11
+
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Database: `Raymond`
+--
+
+--
+-- Dumping data for table `Author`
+--
 
 INSERT INTO `Author` (`id`, `name`) VALUES
-                                        (0x1e5f187c86e94faab0ff0cd4f978c02b, ' Jules Joseph LeClercq'),
-                                        (0x231aed889af8486b9d778f4a2da835fe, 'Jeremy Howard'),
-                                        (0x932ee8ed2cef4db3b705329f8a4c9eed, ' Sylvain Gugger');
+                                        (0x98ab602ea662460bbfc8e6b7715808ca, 'Jeremy Howard '),
+                                        (0xae9227616c22442b8f6601e6777b6946, ' Sylvain Gugger '),
+                                        (0xfad705080e5440bb957c7953d4e6ea68, ' Roger Vailland ');
 
-INSERT INTO `Book` (`id`, `isbn`, `title`) VALUES
-    (0x95a48224f8a844a4a5dfb3c1c00eca19, '978-1144500083', 'Un Séjour Dans L île De Java: Le Pays, Les Habitants, Le Système Colonial'),
-(0xbef619cc49a7490689063c81f5d08fb2, '978-1-492-04552-6', 'Deep LEarning for Coders with fastai & Pytorch');
+--
+-- Dumping data for table `Book`
+--
+
+INSERT INTO `Book` (`id`, `DTYPE`, `isbn`, `title`) VALUES
+                                                        (0x5febdd3ca7ec4a098b64ac42b906f7c7, 'ITBook', '978-1-492-04552-6', 'Deep LEarning for Coders with fastai & Pytorch '),
+                                                        (0xe67897e1336c4b1cacef296a03d13d2f, 'RegularBook', 'XXXX', 'Boroboudour voyage à Bali, Java et autres îles (La grande collection');
+
+--
+-- Dumping data for table `book_author`
+--
 
 INSERT INTO `book_author` (`author_id`, `book_id`) VALUES
-(0x1e5f187c86e94faab0ff0cd4f978c02b, 0x95a48224f8a844a4a5dfb3c1c00eca19),
-(0x231aed889af8486b9d778f4a2da835fe, 0xbef619cc49a7490689063c81f5d08fb2),
-(0x932ee8ed2cef4db3b705329f8a4c9eed, 0xbef619cc49a7490689063c81f5d08fb2);
+                                                       (0x98ab602ea662460bbfc8e6b7715808ca, 0x5febdd3ca7ec4a098b64ac42b906f7c7),
+                                                       (0xae9227616c22442b8f6601e6777b6946, 0x5febdd3ca7ec4a098b64ac42b906f7c7),
+                                                       (0xfad705080e5440bb957c7953d4e6ea68, 0xe67897e1336c4b1cacef296a03d13d2f);
+
+--
+-- Dumping data for table `book_theme`
+--
 
 INSERT INTO `book_theme` (`book_id`, `theme_id`) VALUES
-(0x95a48224f8a844a4a5dfb3c1c00eca19, 0x0e820a0dea3b43899772c809ef50078f),
-(0xbef619cc49a7490689063c81f5d08fb2, 0x86766e7c78f94825a9a83b1e73521488),
-(0x95a48224f8a844a4a5dfb3c1c00eca19, 0xf147c1a3218b4d00a072c8bbb746809e);
+                                                     (0x5febdd3ca7ec4a098b64ac42b906f7c7, 0x0aacf407a55d42a38fd1e239c7d0d3ab),
+                                                     (0xe67897e1336c4b1cacef296a03d13d2f, 0xebc05ce6660749ca98b716884305b4f0),
+                                                     (0xe67897e1336c4b1cacef296a03d13d2f, 0xf6059e61b03b4a66b4bfc8598a04fe60);
 
-INSERT INTO `ItBook` (`id`) VALUES
-(0xbef619cc49a7490689063c81f5d08fb2);
+--
+-- Dumping data for table `ItBook_languages`
+--
 
 INSERT INTO `ItBook_languages` (`ItBook_id`, `languages`) VALUES
-(0xbef619cc49a7490689063c81f5d08fb2, 'Python');
+    (0x5febdd3ca7ec4a098b64ac42b906f7c7, 'Python');
 
-CREATE TABLE `Theme` (
-  `id` binary(16) NOT NULL,
-  `name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+--
+-- Dumping data for table `Theme`
+--
 
 INSERT INTO `Theme` (`id`, `name`) VALUES
-(0x0e820a0dea3b43899772c809ef50078f, ' Iles'),
-(0x86766e7c78f94825a9a83b1e73521488, ' AI'),
-(0xf147c1a3218b4d00a072c8bbb746809e, 'Java');
-
-
-ALTER TABLE `Theme`
-  ADD PRIMARY KEY (`id`);
+                                       (0x0aacf407a55d42a38fd1e239c7d0d3ab, 'AI'),
+                                       (0xebc05ce6660749ca98b716884305b4f0, 'Java'),
+                                       (0xf6059e61b03b4a66b4bfc8598a04fe60, 'indonesie');
 SET FOREIGN_KEY_CHECKS=1;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

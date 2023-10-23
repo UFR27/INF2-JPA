@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+
 @Entity
+@DiscriminatorValue("ITBook")
 public class ItBook extends Book {
 
     @ElementCollection(fetch = FetchType.EAGER)
