@@ -1,0 +1,42 @@
+{
+  "id": "b10c8270-3f22-479b-89b6-c919dec60aec",
+  "tourFile": "04-Héritage.tour",
+  "title": "04-Héritage",
+  "description": "A New Tour",
+  "steps": [
+    {
+      "title": "A Description-Only Step",
+      "description": "L\u0027héritage n\u0027est pas possible avec les bases de données SQL, alors qu\u0027il représente une point capital de la POO.\n\nNous allons montrer comment l\u0027héritage est supporté dans le modèle"
+    },
+    {
+      "title": "ItBook.java:9",
+      "description": "Ici, nous créons une nouvelle classe qui hérite de Book. Ce sont les livres qui parlent d\u0027IT.\nNous avons une nouvelle règle métier: Si le livre est un livre d\u0027IT, il ne faut pas afficher les langage de programmation en tant que thèmes et afficher [IT] devant le livre.\nLes langages de programmation sont sauvegardés dans une collection attachée au livre",
+      "file": "ItBook.java",
+      "line": 9
+    },
+    {
+      "title": "Book.java:10",
+      "description": "Ici, nous spécifions que la classe mère utilise une statégie JOINED_TABLE pour l\u0027héritage",
+      "file": "Book.java",
+      "line": 10
+    },
+    {
+      "title": "BookInventoryService.java:58",
+      "description": "Ici, nous utilisons le polymorphisme pour instancier et appeller deux types d\u0027objets en fonction du formulaire: les books et les ITBooks",
+      "file": "BookInventoryService.java",
+      "line": 58
+    },
+    {
+      "title": "BookInventoryService.java:90",
+      "description": "Ici, nous voyons que nous pouvons utiliser instanceof pour différentier les instances de Book.\nToute méthode polymorphique pourrait être également appellée",
+      "file": "BookInventoryService.java",
+      "line": 90
+    },
+    {
+      "title": "ItBook.java:20",
+      "description": "Ici nous overridons la méthode getTitle de la classe Mère",
+      "file": "ItBook.java",
+      "line": 20
+    }
+  ]
+}

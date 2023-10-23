@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Book {
     public UUID getId() {
         return id;

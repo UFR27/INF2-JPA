@@ -10,5 +10,5 @@ import java.util.UUID;
  * @param title   title of the book
  * @param isbn    International Standard Book Number
  */
-public record BookDTO(Set<String> authors, String title, String isbn, Set<String> themes) {
+public record BookDTO(Set<String> authors, String title, String isbn, Set<String> themes,boolean isIt) {
 }

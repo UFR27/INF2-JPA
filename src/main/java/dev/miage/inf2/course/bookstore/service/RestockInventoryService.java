@@ -13,7 +13,7 @@ public class RestockInventoryService {
 
     public void restockBook(BookDTO book) {
         //pretend we order the book somewhere
-        BookDTO newBook = new BookDTO(book.authors(), book.title() + " (restocked) ", book.isbn(),book.themes());
+        BookDTO newBook = new BookDTO(book.authors(), book.title() + " (restocked) ", book.isbn(),book.themes(), book.isIt());
         shop.stock(newBook);
     }
 

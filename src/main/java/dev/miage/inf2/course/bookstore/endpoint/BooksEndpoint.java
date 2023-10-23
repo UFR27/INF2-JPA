@@ -55,7 +55,7 @@ public class BooksEndpoint {
     @DELETE
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance buybook(@PathParam("isbn") String isbn) {
-        bookShop.sell(new CustomerDTO(MobyNamesGenerator.getRandomName(), MobyNamesGenerator.getRandomName(), "toto@miage.dev", "+3395387845"),isbn);
+        bookShop.sell(new CustomerDTO(MobyNamesGenerator.getRandomName(), MobyNamesGenerator.getRandomName(), "toto@miage.dev", "+3395387845"), isbn);
         return Templates.booklist(bookShop.getAllItems());
     }
 
@@ -69,12 +69,12 @@ public class BooksEndpoint {
     @POST
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response newbook(@FormParam("author") String authorParam, @FormParam("title") String title, @FormParam("isbn") String isbn, @FormParam("themes") String themesParam) throws URISyntaxException {
+    public Response newbook(@FormParam("author") String authorParam, @FormParam("title") String title, @FormParam("isbn") String isbn, @FormParam("themes") String themesParam, @FormParam("isIt") Boolean isIt) throws URISyntaxException {
         Set<String> authors = new HashSet<>();
         authors.addAll(java.util.Arrays.asList(authorParam.split(",")));
         Set<String> themes = new HashSet<>();
         themes.addAll(java.util.Arrays.asList(themesParam.split(",")));
-        BookDTO book = new BookDTO(authors, title, isbn,themes);
+        BookDTO book = new BookDTO(authors, title, isbn, themes, Objects.equals(isIt,Boolean.TRUE));
         bookShop.stock(book);
         return Response.seeOther(new URI("/book/all")).build();
     }
@@ -82,18 +82,22 @@ public class BooksEndpoint {
     @Path("{isbn}/author")
     @PUT
     @Consumes(MediaType.TEXT_PLAIN)
-    public Response changeAuthorNameForBook(@PathParam("isbn") String isbn,String newAuthorName){
-        bookShop.updateBookAuthorName(isbn,newAuthorName);
+    public Response changeAuthorNameForBook(@PathParam("isbn") String isbn, String newAuthorName) {
+        bookShop.updateBookAuthorName(isbn, newAuthorName);
         return Response.accepted().build();
 
-    };
+    }
+
+    ;
 
     @Path("{isbn}/title")
     @PUT
     @Consumes(MediaType.TEXT_PLAIN)
-    public Response changeTitleForBook(@PathParam("isbn") String isbn,String newTitle){
-        bookShop.updateBookTitle(isbn,newTitle);
+    public Response changeTitleForBook(@PathParam("isbn") String isbn, String newTitle) {
+        bookShop.updateBookTitle(isbn, newTitle);
         return Response.accepted().build();
 
-    };
+    }
+
+    ;
 }

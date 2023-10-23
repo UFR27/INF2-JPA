@@ -12,7 +12,8 @@
 
 <ul>
     {#for book in books}
-        <li>{book_count}. {book.title} by
+        <li>
+            {book.title} by
         {#for author in book.authors()}
             {author}
             {#if author_hasNext},{/if}
