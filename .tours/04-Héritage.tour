@@ -37,6 +37,10 @@
       "description": "Ici nous overridons la méthode getTitle de la classe Mère",
       "file": "ItBook.java",
       "line": 20
+    },
+    {
+      "title": "A Description-Only Step",
+      "description": "Nous souhaitons changer le schema de la base de donnée pour faire en sorte que les sous classes de Book soient présente dans la même table que Book et qu\u0027une colonne de discrimination soit utilisée pour différentier les types des instances.\nComment modifier les types Book et ItBook pour y parvenir?\n\nAjoutez le type livre de cuisine, qui exclus des thèmes les fruits et les légumes les plus courrants, mais qui les rajoute dans la nouvelle sous classe en tant qu\u0027attribut."
     }
   ]
 }
